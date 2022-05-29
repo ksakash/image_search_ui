@@ -14,25 +14,6 @@ const complements = [
   "You've learned a lot of things, and that's pretty hard to do"
 ];
 
-// const img_dict = {
-//   1: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   2: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   3: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   4: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   5: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   6: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   7: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   8: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   9: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg",
-//   10: "https://m.media-amazon.com/images/I/61cK588k49L._SY606_.jpg"
-// };
-
-// const match_dict = {
-//   1: [2, 3, 4],
-//   5: [6, 7, 8],
-//   6: [9, 10]
-// };
-
 function getRandomComplement() {
   const randomIndex = Math.floor(Math.random() * complements.length);
   return complements[randomIndex];
@@ -55,15 +36,6 @@ app.get("/complement", function(req, res) {
     .end();
 });
 
-// fetch("./data/data.json")
-// .then(response => {
-//    return response.json();
-// })
-// .then(jsondata => console.log(jsondata));
-
-// const config = require('./data/data.json');
-// console.log(config);
-
 const img_dict = require('./data/img.json');
 console.log(img_dict);
 
@@ -73,7 +45,6 @@ console.log(match_dict);
 
 app.post("/complement", function(req, res) {
   var prod_id = req.body.prod_id;
-  // let img_url = 'Not valid option';
   const img_url_array = [];
   if (prod_id in match_dict) {
       to_ids = match_dict[prod_id];
@@ -83,7 +54,6 @@ app.post("/complement", function(req, res) {
           img_url_array.push(img_dict[to_id]);
         }
       }
-      // img_url = img_dict[prod_id];
   }
 
   console.log(img_url_array);
